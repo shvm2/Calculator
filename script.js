@@ -2,6 +2,8 @@ let currentInput = '';
 let currentOperator = '';
 let memory = '';
 let isThemeDark = false;
+let operationInProgress = false;
+let newS = true;
 
 function updateDisplay() 
 {
@@ -10,6 +12,10 @@ function updateDisplay()
 }
 
 function appendNumber(number) {
+    if(!newS)
+    {
+        clearDisplay();
+    }
     if (currentInput === '0' || currentInput === 'Error') {
         currentInput = number.toString();
     } else {
@@ -28,11 +34,36 @@ function setOperator(operator) {
         memory = currentInput;
         currentInput = '';
         currentOperator = operator;
+        newS=true;
     }
+    highlightOperatorButton(operator);
+}
+
+function highlightOperatorButton(operator) {
+    const operatorButtons = document.querySelectorAll('.operator');
+    operatorButtons.forEach(button => {
+        button.classList.remove('active-operator');
+    });
+
+    const button = document.querySelector(`.operator[data-operator="${operator}"]`);
+    if (button) {
+        button.classList.add('active-operator');
+    }
+    
+    operationInProgress = true;
+}
+
+function clearOperatorHighlights(){
+    const operatorButtons = document.querySelectorAll('.operator');
+    operatorButtons.forEach(button => {
+        button.classList.remove('active-operator');
+    });
+    operationInProgress = false;
 }
 
 function calculate() {
     if (currentOperator === '' || currentInput === '') return;
+
     if (currentOperator === '+') {
         currentInput = (parseFloat(memory) + parseFloat(currentInput)).toString();
     } else if (currentOperator === '-') {
@@ -46,15 +77,18 @@ function calculate() {
             currentInput = (parseFloat(memory) / parseFloat(currentInput)).toString();
         }
     }
-    currentOperator = '';
     memory = '';
+    clearOperatorHighlights();
+    currentOperator = '';
     updateDisplay();
+    newS=false;
 }
-
 function clearDisplay() {
     currentInput = '0';
     currentOperator = '';
     memory = '';
+    clearOperatorHighlights();
+    newS=true;
     updateDisplay();
 }
 
