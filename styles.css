@@ -1,0 +1,142 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #03112e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.display {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.input {
+    font-size: 1.5rem;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: none;
+    background-color: #e2e2e2;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.theme-toggle {
+    grid-column: span 1;
+    font-size: 1rem;
+    color: #333;
+}
+
+.operator {
+    background-color: #58a2e6;
+    color: whitesmoke;
+}
+
+.zero {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.calculator.dark-theme {
+    background-color: #333;
+    color: #fff;
+    .display{
+        background-color: #807979;
+    }
+}
+
+.operator1{
+    background-color:#8723e5d8 ;
+    color:whitesmoke;
+}
+
+.equals{
+    background-color:#a01b12eb;
+    color:white;
+}
+
+.theme-toggle {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align:middle;
+    align-items: center;
+    position: relative;
+    width: 50px;
+    height: 20px;
+}
+
+.theme-toggle input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 0px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.calculator.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
+
+
+.toggle-label {
+    grid-column: span 3;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px; 
+}
